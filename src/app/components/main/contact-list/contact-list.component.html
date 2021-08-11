@@ -1,0 +1,24 @@
+<!-- <div id="sideDiv" class="width-35 padding-20 bg-gris-2 padding-10 paddingBottom-0"> -->
+<div id="sideDiv" class="padding-20 bg-gris-2 padding-10 paddingBottom-0">
+    <div class="separadorBlancoSimple"></div>
+  <!--<<input name="" type="text" class="buscarLarge " placeholder=" Buscar contacto" title="Buscar">-->
+
+  <input name="" type="text" class="buscarLarge " placeholder=" Buscar contacto"
+          title="Buscar" ng-model="searchText" ng-change="inputSearchChanged()"
+          ng-model-options="{debounce: 450}" autofocus>
+
+  <h6>Contactos</h6>
+  <ul id="listDiv" class="arrow2 listRight fontsize-14 scroller" style="height: 85%">
+      <div id="remoteContactList" ng-repeat="contact in remoteContacts track by contact.cuil">
+          <div ng-click="showContactInfo(contact)" style="cursor: pointer">
+              <li>
+                  <img src="assets/images/star_72.png" class="icon16 margin-5"
+                        ng-show="contact.isInFav">
+                  <img src="assets/images/person_72.png" class="icon16 margin-5"
+                        ng-hide="contact.isInFav">
+                  <!-- <strong>{{lastName(contact)}}</strong>,{{firstName(contact)}} -->
+              </li>
+          </div>
+      </div>
+  </ul>
+</div>
