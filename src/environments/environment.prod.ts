@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  apiSite: 'http://servint.afip.gob.ar/',
+  apiURL: 'secure/deinco/agenda/'
 };

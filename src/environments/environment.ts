@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiSite: 'http://servint.afip.gob.ar/',
+  apiURL: 'secure/deinco/agenda/'
 };
 
 /*

@@ -1,0 +1,8 @@
+.example-card {
+  max-width: 400px;
+}
+
+.card-avatar-image {
+  background-image: "assets/images/person_72.png";
+  background-size:auto;
+}

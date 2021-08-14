@@ -1,6 +1,8 @@
-<div id="contentDiv" class="width-65 textCenter scroller" ng-hide="selectedContact == null;">
+<!-- <div id="contentDiv" class="width-65 textCenter scroller" ng-hide="selectedContact == null;"> -->
+<div id="contentDiv" class="textCenter scroller" ng-hide="selectedContact == null;">
 
   <div class="margin-20">
+
       <div class="avatarLarge relative block floatNone floatCenter icon  bg-azul-6 marginUpDown-30">
           <img src="assets/images/person_white_72.png">
       </div>
@@ -14,11 +16,11 @@
       <div class="units-row">
           <div class="unit-50 textRight ">
 
-              <p class="gris">Ørea</p>
+              <p class="gris">Area</p>
               <!-- <p class="negro font-size-15">{{formatArea(selectedContact)}}</p> -->
               <div class="separadorBlancoSimple"></div>
 
-              <p class="gris">Cod. estructura</p>
+              <p class="gris">Cod. Estructura</p>
               <!-- <p class="negro font-size-15">{{formatCodArea(selectedContact)}}</p> -->
               <div class="separadorBlancoSimple"></div>
 
@@ -41,40 +43,40 @@
 
               </div>
           </div>
-      </div>
+    </div>
 
-      <!-- Informacion de la fejatura -->
-      <div ng-hide="selectedContactBoss == null" ng-click="showContactInfo(selectedContactBoss)" style="cursor: pointer">
+    <!-- Informacion de la fejatura -->
+    <div ng-hide="selectedContactBoss == null" ng-click="showContactInfo(selectedContactBoss)" style="cursor: pointer">
           <div class="separadorBlancoSimple"></div>
           <div class="separadorBlancoSimple"></div>
           <div class="units-row">
-              <div class="unit-50 textRight ">
+            <div class="unit-50 textRight ">
 
-                  <p class="gris">Jefatura</p>
-                  <!-- <p class="negro font-size-15">{{selectedContactBoss.nombre}}</p> -->
+              <p class="gris">Jefatura</p>
+              <!-- <p class="negro font-size-15">{{selectedContactBoss.nombre}}</p> -->
+              <div class="separadorBlancoSimple"></div>
+
+            </div>
+            <div class="unit-50 textLeft">
+
+              <p class="gris">&nbsp;</p>
+              <!-- <p class="negro font-size-15">{{selectedContactBoss.funcion}}</p> -->
+              <div class="separadorBlancoSimple"></div>
+
+              <a ng-click="sendEmailToContact(selectedContactBoss)" class="inline-block">
+                  <p class="gris">Correo</p>
+                  <!-- <p class="negro font-size-18">{{selectedContactBoss.email}}</p> -->
+              </a>
+
+              <div class="separadorBlancoSimple"></div>
+              <div ng-repeat="phone in selectedContactBoss.Telefonos">
+                  <!-- <p class="gris">{{phoneType(phone)}}</p> -->
+                  <!-- <p class="negro font-size-18">{{phoneNumber(phone)}}</p> -->
                   <div class="separadorBlancoSimple"></div>
 
               </div>
-              <div class="unit-50 textLeft">
 
-                  <p class="gris">&nbsp;</p>
-                  <!-- <p class="negro font-size-15">{{selectedContactBoss.funcion}}</p> -->
-                  <div class="separadorBlancoSimple"></div>
-
-                  <a ng-click="sendEmailToContact(selectedContactBoss)" class="inline-block">
-                      <p class="gris">Correo</p>
-                      <!-- <p class="negro font-size-18">{{selectedContactBoss.email}}</p> -->
-                  </a>
-
-                  <div class="separadorBlancoSimple"></div>
-                  <div ng-repeat="phone in selectedContactBoss.Telefonos">
-                      <!-- <p class="gris">{{phoneType(phone)}}</p> -->
-                      <!-- <p class="negro font-size-18">{{phoneNumber(phone)}}</p> -->
-                      <div class="separadorBlancoSimple"></div>
-
-                  </div>
-
-              </div>
+            </div>
           </div>
 
           <div class="units-row">
@@ -87,22 +89,18 @@
           </div>
       </div>
 
-      <a class="button azul small" title="Contactos" alt="Contactos"
-          ng-click="showRelatedContacts(selectedContact)"> <img
-              src="assets/images/ic_business_white_48dp_2x.png"> Contactos del área </a>
+      <div class="btn-toolbar text-center well"></div>
 
-      <a class="button naranja small" title="Descargar" alt="Descargar"
-          ng-click="downloadVCardForContact(selectedContact)"> <img
-              src="assets/images/file_download_72.png"> Descargar</a>
+      <!-- <a class="button azul small" title="Contactos" alt="Contactos" -->
+        <a class="button azul col-xs-2 margin" title="Contactos" alt="Contactos"
+            ng-click="showRelatedContacts(selectedContact)"> <img
+                src="assets/images/ic_business_white_48dp_2x.png"> Contactos del área </a>
 
-      <!--
-      <a class="button celeste small" title="Agregar" alt="Agregar"> <img
-              src="images/star_white_72.png"> Agregar a Favoritos </a>
+        <!-- <a class="button naranja small" title="Descargar" alt="Descargar" -->
+        <a class="button naranja col-xs-2 margin" title="Descargar" alt="Descargar"
+            ng-click="downloadVCardForContact(selectedContact)"> <img
+                src="assets/images/file_download_72.png"> Descargar</a>
 
-
-      <a class="button naranja small" title="Descargar" alt="Descargar"> <img
-              src="images/file_download_72.png"> Descargar</a>
-      -->
-  </div>
+    </div>
 </div>
 

@@ -1,0 +1,55 @@
+Páginas de Angular 
+
+Consumir API
+------------
+https://docs.angular.lat/tutorial/toh-pt6
+https://soka.gitlab.io/angular/conceptos/http/consumir-servicios-api-rest/consumir-servicios-api-rest/
+https://codingpotions.com/angular-servicios-llamadas-http
+
+Search text
+-----------
+Busquedas locales
+https://stackoverflow.com/questions/53774078/search-input-field-in-angular
+https://stackblitz.com/edit/angular-search-filter?file=app%2Fapp.component.html
+
+Busquedas remotas
+https://alligator.io/angular/real-time-search-angular-rxjs/
+https://www.freakyjolly.com/angular-material-autocomplete-example-using-server-results/          <=========  este es posta!!!
+https://mdbootstrap.com/docs/angular/forms/search/
+https://edupala.com/how-to-implement-an-angular-search-filter-in-angular/
+
+
+main.js
+
+{ 
+  "servint" : "servint.afip.gob.ar",
+  "listen" : 8080
+}
+
+var SERVICE_HOST = config.servint;
+
+var SERVICE_URL = 'http://' + SERVICE_HOST;
+
+var DEINCO_SERVICE = "/secure/deinco/agenda";
+var IP_ENDPOINT = "/consulta.asp?i=";
+var CUIL_ENDPOINT = "/consulta.asp?c=";
+
+
+Ejemplos
+--------
+
+http://servint.afip.gob.ar/secure/deinco/agenda/consulta.asp?s=mance
+http://servint.afip.gob.ar/secure/deinco/agenda/consulta.asp?s=emajchrzak
+http://servint.afip.gob.ar/secure/deinco/agenda/consulta.asp?c=20182865762
+http://servint.afip.gob.ar/secure/deinco/agenda/consulta.asp?i=10.30.57.128
+
+'/api/agenda/consulta.asp?s='    x texto a buscar
+'/api/agenda/consulta.asp?c='    x cuil
+'/api/agenda/consulta.asp?i='    x ip
+
+
+apiSite: 'http://servint.afip.gob.ar/',
+apiURL: 'secure/deinco/agenda/'
+
+consulta.asp?
+

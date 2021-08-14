@@ -1,4 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: calc(100% - 4rem);
+}
+.footer {
+  height: 4rem;
+  background-color: #246ea0;
+  display:flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+
 /* =Grid
 -----------------------------------------------------------------------------*/
 .units-container:after,
@@ -11494,3 +11513,6 @@ border-width: 1px !important;
 }
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
