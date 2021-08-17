@@ -15,6 +15,9 @@ import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ContactoService } from './services/contacto.service';
+
 
 @NgModule({
   declarations: [
@@ -29,9 +32,11 @@ import {MatCardModule} from '@angular/material/card';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    ScrollingModule
   ],
-  providers: [ApiService],
+  providers: [ApiService,
+              ContactListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,8 @@
-<!-- <div id="sideDiv" class="width-35 padding-20 bg-gris-2 padding-10 paddingBottom-0"> -->
-<div id="sideDiv" class="padding-20 bg-gris-2 padding-10 paddingBottom-0">
+<div id="sideDiv" class="width-450 padding-10 bg-gris-2 paddingBottom-10 marginBottom-0">
   <div class="separadorBlancoSimple"></div>
 
   <!-- input de texto a buscar -->
-  <!-- <input name="" type="text" class="buscarLarge " title="Buscar" placeholder=" Buscar contacto"
-  ng-model="searchText" ng-change="inputSearchChanged()"
+  <!-- ng-model="searchText" ng-change="inputSearchChanged()"
   ng-model-options="{debounce: 450}" autofocus> -->
   <input name="" type="text" class="buscarLarge" title="Buscar" placeholder=" Buscar contacto"
   [(ngModel)]="searchText" (input)="inputSearchChanged()"
@@ -12,31 +10,39 @@
 
   <!-- lista de contactos que cumplen con el texto a buscar -->
   <h3>Contactos</h3>
-  <ul id="listDiv" class="arrow2 listRight fontsize-14 scroller" style="height: 85%">
+  <!-- <ul id="listDiv" class="arrow2  fontsize-14 scroller" style="height: 85%"> -->
+  <ul id="listDiv" class="arrow2 listRight">
+      <cdk-virtual-scroll-viewport class="list-viewport" itemSize="60">
 
-    <!-- <div id="remoteContactList" ng-repeat="contact in remoteContacts track by contact.cuil"> -->
-    <div id="remoteContactList" *ngFor="let contact of remoteContacts; let i = index;">
-        <div (click)="showContactInfo(contact)" style="cursor: pointer">
+      <dl class="lista-dl">
+        <ng-container *cdkVirtualFor="let contact of remoteContacts; let i = index;">
 
-          <li>
-            <!-- <div> -->
-                <img src="assets/images/person_72.png" class="icon16 margin-5"
-                ng-hide="contactos.isInFav">
-                <strong>{{lastName(contact)}}</strong>,{{firstName(contact)}}
-            <!-- </div> -->
-            <div class="marginLeft-25 italic" >
-                {{funcion(contact)}}
-                <br>
-                {{formatArea(contact)}}
-            </div>
+            <div (click)="showContactInfo(contact)" style="cursor: pointer">
 
-          </li>
+            <li>
+              <img src="assets/images/person_72.png" class="icon16 margin-5"
+              ng-hide="contactos.isInFav">
+              <strong>{{lastName(contact)}}</strong>,{{firstName(contact)}}
+              <div class="marginLeft-25 italic" >
+                  {{funcion(contact)}}
+                  <br>
+                  {{formatArea(contact)}}
+              </div>
 
+            </li>
 
+            <!-- <dt class="example-dt"> -->
+            <!-- <dt class="example-dt">{{lastName(contact)}}</dt> -->
+            <!-- </dt> -->
 
-      </div>
-    </div>
+          </div>
 
+        </ng-container>
+      </dl>
+
+      <!-- </div> -->
+
+    </cdk-virtual-scroll-viewport>
   </ul>
 
 </div>

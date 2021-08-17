@@ -17,11 +17,11 @@
           <div class="unit-50 textRight ">
 
               <p class="gris">Area</p>
-              <!-- <p class="negro font-size-15">{{formatArea(selectedContact)}}</p> -->
+              <p class="negro font-size-15">{{formatArea(selectedContact)}}</p>
               <div class="separadorBlancoSimple"></div>
 
               <p class="gris">Cod. Estructura</p>
-              <!-- <p class="negro font-size-15">{{formatCodArea(selectedContact)}}</p> -->
+              <p class="negro font-size-15">{{formatCodArea(selectedContact)}}</p>
               <div class="separadorBlancoSimple"></div>
 
 
@@ -30,15 +30,15 @@
 
               <a ng-click="sendEmailToContact(selectedContact)" class="inline-block">
                   <p class="gris">Correo</p>
-                  <!-- <p class="negro font-size-18">{{selectedContact.email}}</p> -->
+                  <p class="negro font-size-18">{{selectedContact.email}}</p>
               </a>
 
               <div class="separadorBlancoSimple"></div>
 
               <div ng-repeat="phone in selectedContact.Telefonos">
 
-                  <!-- <p class="gris">{{phoneType(phone)}}</p> -->
-                  <!-- <p class="negro font-size-18">{{phoneNumber(phone)}}</p> -->
+                  <p class="gris">{{phoneType(selectedContact)}}</p>
+                  <p class="negro font-size-18">{{phoneNumber(selectedContact)}}</p>
                   <div class="separadorBlancoSimple"></div>
 
               </div>
