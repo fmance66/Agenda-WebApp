@@ -1,8 +1,7 @@
+import { MainComponent } from './../main.component';
 import { Contacto } from './../../../models/contacto';
 import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { TitleCasePipe } from '@angular/common';
 import { ContactoService } from 'src/app/services/contacto.service';
 
 @Component({
@@ -23,7 +22,7 @@ export class ContactListComponent extends ContactoService implements OnInit {
 
 
   constructor(private apiService: ApiService,
-              private contactoService: ContactoService) {
+              private mainComponent: MainComponent) {
         super();
    }
 
@@ -48,6 +47,9 @@ export class ContactListComponent extends ContactoService implements OnInit {
 
     this.apiService.getContact(contact.cuil.toString()).subscribe( data => {
         this.selectedContact = data});
+
+    // muestra los datos del contacto seleccionado
+    this.mainComponent.show(contact);
 
     console.log(this.selectedContact);
 

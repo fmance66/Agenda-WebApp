@@ -62,8 +62,31 @@ http://servint.afip.gob.ar/secure/deinco/agenda/consulta.asp?i=10.30.57.128
 '/api/agenda/consulta.asp?i='    x ip
 
 
+localhost:3000
+
+
 apiSite: 'http://servint.afip.gob.ar/',
 apiURL: 'secure/deinco/agenda/'
 
 consulta.asp?
+
+<form *ngIf="loading"  [formGroup]
+
+app-routing-module.ts   es donde redirecciona las url
+
+genera una interface en interfaces que se llama menu.ts donde coloca el nombre de un menu
+y la url donde lo tiene que direccionar
+
+luego hace servicio
+
+return this.http.get<Menu[]>('.assets/data/menu.json')
+
+para cargar el menu
+
+this.menuService.getMenu().suscribe(data => {
+    this.menu = data;
+})
+
+
+mat-grid-list  estaria bueno para dividir la pantalla
 

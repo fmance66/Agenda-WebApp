@@ -1,3 +1,5 @@
+<!-- <form [formGroup]="form"> -->
+
 <!-- <div id="contentDiv" class="width-65 textCenter scroller" ng-hide="selectedContact == null;"> -->
 <div id="contentDiv" class="textCenter scroller" ng-hide="selectedContact == null;">
 
@@ -6,9 +8,12 @@
       <div class="avatarLarge relative block floatNone floatCenter icon  bg-azul-6 marginUpDown-30">
           <img src="assets/images/person_white_72.png">
       </div>
-      <!-- <h3 class="azul">{{firstName(selectedContact)}} <span class="bolder">{{lastName(selectedContact)}}</span> -->
-      <!-- </h3> -->
-      <!-- <h6 class="normal">{{selectedContact.funcion}}</h6> -->
+
+      <h3 class="azul">{{firstName(selectedContact)}}
+               <strong>{{lastName(selectedContact)}}</strong>
+      </h3>
+      <h4 class="normal">{{selectedContact.funcion}}</h4>
+
       <div class="separadorBlancoSimple"></div>
 
 
@@ -104,3 +109,4 @@
     </div>
 </div>
 
+<!-- </form> -->
