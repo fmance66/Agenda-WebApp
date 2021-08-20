@@ -1,7 +1,8 @@
 <!-- <form [formGroup]="form"> -->
 
 <!-- <div id="contentDiv" class="width-65 textCenter scroller" ng-hide="selectedContact == null;"> -->
-<div id="contentDiv" class="textCenter scroller" ng-hide="selectedContact == null;">
+<!-- <div id="contentDiv" class="textCenter scroller" [hidden]="selectedContact == null"> -->
+<div *ngIf="selectedContact!=null" id="contentDiv" class="textCenter scroller" >
 
   <div class="margin-20">
 
@@ -33,17 +34,17 @@
           </div>
           <div class="unit-50 textLeft">
 
-              <a ng-click="sendEmailToContact(selectedContact)" class="inline-block">
+              <a (click)="sendEmailToContact(selectedContact)" class="inline-block">
                   <p class="gris">Correo</p>
                   <p class="negro font-size-18">{{selectedContact.email}}</p>
               </a>
 
               <div class="separadorBlancoSimple"></div>
 
-              <div ng-repeat="phone in selectedContact.Telefonos">
-
-                  <p class="gris">{{phoneType(selectedContact)}}</p>
-                  <p class="negro font-size-18">{{phoneNumber(selectedContact)}}</p>
+              <!-- <div ng-repeat="phone in selectedContact.Telefonos"> -->
+              <div *ngFor="let phone of selectedContact.Telefonos; index as i">
+                  <p class="gris">{{phoneType(phone)}}</p>
+                  <p class="negro font-size-18">{{phoneNumber(phone)}}</p>
                   <div class="separadorBlancoSimple"></div>
 
               </div>
@@ -51,32 +52,34 @@
     </div>
 
     <!-- Informacion de la fejatura -->
-    <div ng-hide="selectedContactBoss == null" ng-click="showContactInfo(selectedContactBoss)" style="cursor: pointer">
-          <div class="separadorBlancoSimple"></div>
+    <!-- <div ng-hide="selectedContactBoss == null" (click)="showContactInfo(selectedContactBoss)" style="cursor: pointer"> -->
+    <!-- <div [hidden]="selectedContactBoss == null" (click)="showContactInfo(selectedContactBoss)" style="cursor: pointer"> -->
+    <div *ngIf="selectedContactBoss != null" (click)="showContactInfo(selectedContactBoss)" style="cursor: pointer">
+        <div class="separadorBlancoSimple"></div>
           <div class="separadorBlancoSimple"></div>
           <div class="units-row">
             <div class="unit-50 textRight ">
 
               <p class="gris">Jefatura</p>
-              <!-- <p class="negro font-size-15">{{selectedContactBoss.nombre}}</p> -->
+              <p class="negro font-size-15">{{selectedContactBoss.nombre}}</p>
               <div class="separadorBlancoSimple"></div>
 
             </div>
             <div class="unit-50 textLeft">
 
               <p class="gris">&nbsp;</p>
-              <!-- <p class="negro font-size-15">{{selectedContactBoss.funcion}}</p> -->
+              <p class="negro font-size-15">{{selectedContactBoss.funcion}}</p>
               <div class="separadorBlancoSimple"></div>
 
-              <a ng-click="sendEmailToContact(selectedContactBoss)" class="inline-block">
+              <a (click)="sendEmailToContact(selectedContactBoss)" class="inline-block">
                   <p class="gris">Correo</p>
-                  <!-- <p class="negro font-size-18">{{selectedContactBoss.email}}</p> -->
+                  <p class="negro font-size-18">{{selectedContactBoss.email}}</p>
               </a>
 
               <div class="separadorBlancoSimple"></div>
-              <div ng-repeat="phone in selectedContactBoss.Telefonos">
-                  <!-- <p class="gris">{{phoneType(phone)}}</p> -->
-                  <!-- <p class="negro font-size-18">{{phoneNumber(phone)}}</p> -->
+              <div *ngFor="let phone of selectedContactBoss.Telefonos; index as i">
+                  <p class="gris">{{phoneType(phone)}}</p>
+                  <p class="negro font-size-18">{{phoneNumber(phone)}}</p>
                   <div class="separadorBlancoSimple"></div>
 
               </div>
@@ -98,12 +101,12 @@
 
       <!-- <a class="button azul small" title="Contactos" alt="Contactos" -->
         <a class="button azul col-xs-2 margin" title="Contactos" alt="Contactos"
-            ng-click="showRelatedContacts(selectedContact)"> <img
+            (click)="showRelatedContacts(selectedContact)"> <img
                 src="assets/images/ic_business_white_48dp_2x.png"> Contactos del área </a>
 
         <!-- <a class="button naranja small" title="Descargar" alt="Descargar" -->
         <a class="button naranja col-xs-2 margin" title="Descargar" alt="Descargar"
-            ng-click="downloadVCardForContact(selectedContact)"> <img
+            (click)="downloadVCardForContact(selectedContact)"> <img
                 src="assets/images/file_download_72.png"> Descargar</a>
 
     </div>
