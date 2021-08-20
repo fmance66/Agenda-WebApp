@@ -6,7 +6,9 @@
   ng-model-options="{debounce: 450}" autofocus> -->
   <input name="" type="text" class="buscarLarge" title="Buscar" placeholder=" Buscar contacto"
   [(ngModel)]="searchText" (input)="inputSearchChanged()"
-  ngControlOptions="{debounce: 450}" autofocus>
+  ng-model-options="{debounce: 450}" autofocus>
+
+  <!-- ngControlOptions="{debounce: 450}" autofocus> -->
 
   <!-- lista de contactos que cumplen con el texto a buscar -->
   <h3>Contactos</h3>
@@ -21,7 +23,7 @@
 
             <li>
               <img src="assets/images/person_72.png" class="icon16 margin-5"
-              ng-hide="contactos.isInFav">
+              [hidden]="contactos.isInFav">
               <strong>{{lastName(contact)}}</strong>,{{firstName(contact)}}
               <div class="marginLeft-25 italic" >
                   {{funcion(contact)}}

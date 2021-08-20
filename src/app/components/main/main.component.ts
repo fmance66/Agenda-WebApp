@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Contacto } from 'src/app/models/contacto';
+// import { Contacto } from 'src/app/models/contacto';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +9,7 @@ import { Contacto } from 'src/app/models/contacto';
 })
 export class MainComponent implements OnInit {
 
-  private actualizarFormulario = new BehaviorSubject<Contacto>({} as any);    //
+  private actualizarFormulario = new BehaviorSubject<any>({} as any);    //
 
   constructor() { }
 
@@ -17,12 +17,12 @@ export class MainComponent implements OnInit {
   }
 
   // obtiene los datos de una tarjeta
-  getContacto$(): Observable<Contacto> {
+  getContacto$(): Observable<any> {
     return this.actualizarFormulario.asObservable();
   }
 
   // muestra los datos del contacto
-  show(contacto: Contacto): void {
+  show(contacto: any): void {
     this.actualizarFormulario.next(contacto);
   }
 

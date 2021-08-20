@@ -4,9 +4,6 @@ import { pipe, from, Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-import { Contacto } from '../models/contacto';
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,15 +14,13 @@ export class ApiService {
   apiSite = environment.apiSite;
   apiUrl = environment.apiURL;
 
-  // list: Contacto[] = [];
-
   constructor(private http: HttpClient) { }
 
   // devuelve los contactos que cumplen con searchText
   getContacts(searchText: string): Observable<any> {
     return this.http.get(this.apiSite + this.apiUrl + "consulta.asp?s=" + searchText.trim())
       pipe(
-        map((contactos: Contacto[]) => {
+        map((contactos: any) => {
           return contactos;
         }), catchError ( error => {
           return throwError ('Algo anduvo al hacer getContacts a la API...');
@@ -37,8 +32,8 @@ export class ApiService {
   getContact(cuil: string): Observable<any> {
     return this.http.get(this.apiSite + this.apiUrl + "consulta.asp?c=" + cuil)
       pipe(
-        map((contactos: Contacto[]) => {
-          return contactos;
+        map((contacto: any) => {
+          return contacto;
         }), catchError ( error => {
           return throwError ('Algo anduvo al hacer getContacts a la API...');
         })

@@ -52,7 +52,7 @@ var CUIL_ENDPOINT = "/consulta.asp?c=";
 Ejemplos
 --------
 
-http://servint.afip.gob.ar/secure/deinco/agenda/consulta.asp?s=mance
+http://servint.afip.gob.ar/secure/deinco/agenda/consulta.asp?s=mancevich
 http://servint.afip.gob.ar/secure/deinco/agenda/consulta.asp?s=emajchrzak
 http://servint.afip.gob.ar/secure/deinco/agenda/consulta.asp?c=20182865762
 http://servint.afip.gob.ar/secure/deinco/agenda/consulta.asp?i=10.30.57.128

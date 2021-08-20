@@ -78,9 +78,7 @@ export class ContactoService {
     return 'No existe un interno registrado para este Agente';
   };
 
-  phoneType (contact: Contacto) {
-
-    var phone: any = contact.Telefonos;
+  phoneType (phone: any) {
 
     if (phone == undefined) return '';
 
@@ -95,9 +93,7 @@ export class ContactoService {
     return 'Telefono';
   };
 
-  phoneNumber (contact: Contacto) {
-
-    var phone: any = contact.Telefonos;
+  phoneNumber (phone: any) {
 
     if (phone == undefined) return '';
 
