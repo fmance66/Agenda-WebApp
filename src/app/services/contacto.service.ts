@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Contacto } from '../models/contacto';
+// import { Contacto } from '../models/contacto';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ export class ContactoService {
 
   constructor() { }
 
-  lastName (contacto: Contacto) {
+  lastName (contacto: any) {
     // console.log('--- lastName ---' || contacto.nombre);
     if (contacto == undefined || contacto.nombre == undefined) return '';
     var i = contacto.nombre.indexOf(',');
@@ -21,19 +21,19 @@ export class ContactoService {
     return contacto.nombre.substring(0, i);
   };
 
-  firstName (contacto: Contacto) {
+  firstName (contacto: any) {
     if (contacto == undefined || contacto.nombre == undefined) return '';
     var i = contacto.nombre.indexOf(',');
     if (i < 0) return '';
     return contacto.nombre.substring(i + 1);
   };
 
-  funcion (contacto: Contacto) {
+  funcion (contacto: any) {
     if (contacto.funcion == undefined || contacto.funcion == undefined) return '';
     return contacto.funcion;
   };
 
-  formatArea (contacto: Contacto) {
+  formatArea (contacto: any) {
     if (contacto == undefined || contacto.area == undefined) return '';
     if (contacto.area.descripcion == undefined) return '';
     var s = this.capitalize(contacto.area.descripcion);
@@ -50,13 +50,13 @@ export class ContactoService {
     return s.replace("-->", "»");
   };
 
-  formatCodArea (contacto: Contacto) {
+  formatCodArea (contacto: any) {
     if (contacto == undefined || contacto.area == undefined) return '';
     if (contacto.area.codigo == undefined) return '';
     return contacto.area.codigo;
   };
 
-  phoneFor (contacto: Contacto) {
+  phoneFor (contacto: any) {
 
     if (contacto == undefined) return 'No existe un interno registrado para este Agente';
     if (contacto.Telefonos == undefined) return 'No existe un interno registrado para este Agente';

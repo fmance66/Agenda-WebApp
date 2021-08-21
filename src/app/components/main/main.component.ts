@@ -1,6 +1,7 @@
+import { ContactDataComponent } from './contact-data/contact-data.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-// import { Contacto } from 'src/app/models/contacto';
 
 @Component({
   selector: 'app-main',
@@ -11,9 +12,12 @@ export class MainComponent implements OnInit {
 
   private actualizarFormulario = new BehaviorSubject<any>({} as any);    //
 
-  constructor() { }
+  constructor() {
+
+              }
 
   ngOnInit(): void {
+
   }
 
   // obtiene los datos de una tarjeta

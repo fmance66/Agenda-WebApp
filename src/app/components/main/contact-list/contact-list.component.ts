@@ -1,3 +1,4 @@
+import { ContactDataComponent } from './../contact-data/contact-data.component';
 import { MainComponent } from './../main.component';
 // import { Contacto } from './../../../models/contacto';
 import { ApiService } from './../../../services/api.service';
@@ -12,14 +13,14 @@ import { ContactoService } from 'src/app/services/contacto.service';
 
 export class ContactListComponent extends ContactoService implements OnInit {
 
-  contactos: any;    // array de contactos
-  remoteContacts = [];
-  favs = [];
-  // myContacts = [];
-  // selectedContact: Contacto = new Contacto();
-  // selectedContactBoss: Contacto = new Contacto();
+  // contactos: any;    // array de contactos
+  myContacts: any = [];
+  remoteContacts: any = [];
+  favs: any = [];
+
   selectedContact: any = null;
   selectedContactBoss: any = null;
+
   searchText: string = "";
 
 
@@ -30,17 +31,15 @@ export class ContactListComponent extends ContactoService implements OnInit {
       }
 
   ngOnInit(): void {
-    this.showContacts("mancevich");
-    // this.myContacts = this.contactos;
-    // this.remoteContacts = this.myContacts;
-    this.remoteContacts = this.contactos;
+    this.showRelatedContacts("20182865762");
+    this.myContacts = this.remoteContacts;
   }
 
   showContacts (searchText: string): void {
-    this.apiService.getContacts(searchText).subscribe( data => {
-    this.contactos = data.Agentes});
+    this.apiService.getContacts(searchText).subscribe( (data: any) => {
+    this.remoteContacts = data.Agentes});
 
-    this.remoteContacts = this.contactos;
+    // this.remoteContacts = this.contactos;
     }
 
   showContactInfo (contact: any): void {
@@ -48,9 +47,13 @@ export class ContactListComponent extends ContactoService implements OnInit {
     this.selectedContact = contact;
     this.selectedContactBoss = null;
 
-    this.apiService.getContact(contact.cuil.toString()).subscribe( data => {
+    this.apiService.getContact(contact.cuil.toString()).subscribe( (data: any) => {
 
-        this.selectedContact = data;
+        // this.selectedContact = data;
+        console.log('--- data.Titular ---');
+        console.log(data.Titular);
+        console.log('--- data.Agentes ---');
+        console.log(data.Agentes);
 
         if (data.Titular != undefined &&
             data.Agentes != undefined) {
@@ -68,6 +71,7 @@ export class ContactListComponent extends ContactoService implements OnInit {
 
                 if (id == bossId) {
                       this.selectedContactBoss = data.Agentes[i];
+                      // this.contactData.selectedContactBoss = data.Agentes[i];
                       break;
                   }
               }
@@ -76,24 +80,54 @@ export class ContactListComponent extends ContactoService implements OnInit {
 
       });
 
-    // muestra los datos del contacto seleccionado
-    this.mainComponent.show(contact);
-
     console.log('--- selectedContact en showContactInfo ---');
     console.log(this.selectedContact);
 
     console.log('--- selectedContactBoss showContactInfo ---');
     console.log(this.selectedContactBoss);
 
+    // muestra los datos del contacto seleccionado
+    this.mainComponent.show(contact);
+
   }
 
   inputSearchChanged (): void {
 
     if (this.searchText.trim() == '') {
-        this.remoteContacts = this.contactos;
+        this.remoteContacts = this.myContacts;
     } else {
       this.showContacts(this.searchText);
     }
+};
+
+showRelatedContacts (cuil: any) {
+
+  if (cuil.trim() == '') return;
+
+  this.apiService.getContact(cuil.toString()).subscribe( (data: any) => {
+
+    this.remoteContacts = data.Agentes;
+
+
+  // http.get(url + contact.cuil)
+  //     .then(function (response) {
+  //             remoteContactsFullReply = response.data;
+  //             remoteContacts = response.data.Agentes;
+  //             searchRequestsCount--;
+  //             if (searchRequestsCount <= 0) {
+  //                 searchingContacts = false;
+  //             }
+  //         },
+  //         function (error) {
+  //             showConnectionError();
+  //             searchRequestsCount--;
+  //             if (searchRequestsCount <= 0) {
+  //                 searchingContacts = false;
+  //             }
+  //         });
+
+});
+
 };
 
 // trackByContact: (index: number, contact: Contacto): number => contact.cuil;

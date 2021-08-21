@@ -2,7 +2,7 @@
 
 <!-- <div id="contentDiv" class="width-65 textCenter scroller" ng-hide="selectedContact == null;"> -->
 <!-- <div id="contentDiv" class="textCenter scroller" [hidden]="selectedContact == null"> -->
-<div *ngIf="selectedContact!=null" id="contentDiv" class="textCenter scroller" >
+<div *ngIf="(selectedContact | json) != '{}'" id="contentDiv" class="textCenter scroller" >
 
   <div class="margin-20">
 

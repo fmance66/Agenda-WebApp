@@ -1,3 +1,4 @@
+import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 // import { Contacto } from 'src/app/models/contacto';
@@ -38,10 +39,10 @@ export class ContactDataComponent extends ContactoService implements OnInit {
   ngOnInit(): void {
 
     this.suscription = this.mainComponent.getContacto$().subscribe(data => {
-      // console.log(data);
+
       this.selectedContact = data;
 
-      console.log('--- selectedContact en MainComponent ---');
+      console.log('--- selectedContact en Contact-Data ---');
       console.log(this.selectedContact);
 
     });
@@ -152,33 +153,9 @@ export class ContactDataComponent extends ContactoService implements OnInit {
   };
 
 
-  showRelatedContacts (contact: any) {
+  showRelatedContacts (cuil: any) {
+    this.contactList.showRelatedContacts(cuil);
 
-    if (contact.cuil.trim() == '') return;
-
-    var searchText = '';
-    var searchingContacts = true;
-    var searchRequestsCount = 0;
-    var url = '/api/agenda/consulta.asp?c=';
-
-    // http.get(url + contact.cuil)
-    //     .then(function (response) {
-    //             remoteContactsFullReply = response.data;
-    //             remoteContacts = response.data.Agentes;
-    //             searchRequestsCount--;
-    //             if (searchRequestsCount <= 0) {
-    //                 searchingContacts = false;
-    //             }
-    //         },
-    //         function (error) {
-    //             showConnectionError();
-    //             searchRequestsCount--;
-    //             if (searchRequestsCount <= 0) {
-    //                 searchingContacts = false;
-    //             }
-    //         });
-
-};
-
+  };
 
 }

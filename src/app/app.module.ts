@@ -25,7 +25,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     HeaderComponent,
     MainComponent,
     ContactListComponent,
-    ContactDataComponent
+    ContactDataComponent,
   ],
   imports: [
     BrowserModule,
