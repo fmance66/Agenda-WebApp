@@ -1,9 +1,7 @@
-import { Agente } from './../../../models/agente';
-import { ApiService } from './../../../services/api.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-// import { Contacto } from 'src/app/models/contacto';
 import { ContactoService } from 'src/app/services/contacto.service';
+
 import { ContactListComponent } from '../contact-list/contact-list.component';
 import { MainComponent } from './../main.component';
 
@@ -31,22 +29,16 @@ export class ContactDataComponent extends ContactoService implements OnInit {
     this.selectedContact = null;
     this.selectedContactBoss = null;
 
-    // this.selectedContact = this.contactList.selectedContact;
-
-    // console.log('selectedContact en data: ' + this.selectedContact);
-
   }
 
   ngOnInit(): void {
 
     this.suscription = this.mainComponent.getContacto$().subscribe(data => {
 
-      this.selectedContact = data.agente;
-      this.selectedContactBoss = data.titular;
+    this.selectedContact = data.agente;
+    this.selectedContactBoss = data.titular;
 
-      console.log('data en Contact-Data: ', data);
-      console.log('selectedContact en Contact-Data: ', this.selectedContact);
-      console.log('selectedContactBoss en Contact-Data: ', this.selectedContactBoss);
+    // console.log('data en Contact-Data: ', data);
 
     });
 
@@ -156,8 +148,8 @@ export class ContactDataComponent extends ContactoService implements OnInit {
   };
 
 
-  showRelatedContacts (cuil: any) {
-    this.contactList.showRelatedContacts(cuil);
+  showRelatedContacts (contact: any) {
+    this.contactList.showRelatedContacts(contact);
 
   };
 

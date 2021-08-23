@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ContactListComponent } from './contact-list/contact-list.component';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +8,8 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 })
 export class MainComponent implements OnInit {
 
-  private actualizarFormulario = new BehaviorSubject<any>({} as any);    //
+  private actualizarFormList = new BehaviorSubject<any>({} as any);    //
+  private actualizarFormData = new BehaviorSubject<any>({} as any);    //
 
   constructor() {}
 
@@ -19,12 +19,22 @@ export class MainComponent implements OnInit {
 
   // obtiene los datos de un contacto
   getContacto$(): Observable<any> {
-    return this.actualizarFormulario.asObservable();
+    return this.actualizarFormData.asObservable();
   }
 
   // muestra los datos del contacto
-  show(contacto: any): void {
-    this.actualizarFormulario.next(contacto);
+  show(lista: any): void {
+    this.actualizarFormData.next(lista);
+  }
+
+  // obtiene la lista de los contactos relacionados al agente
+  getRelacionados$(): Observable<any> {
+    return this.actualizarFormList.asObservable();
+  }
+
+  // muestra la lista de los relacionados
+  showRelacionados(lista: any): void {
+    this.actualizarFormList.next(lista);
   }
 
 }

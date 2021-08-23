@@ -5,9 +5,9 @@
 <!-- <div *ngIf="(selectedContact | json) != '{}'" id="contentDiv" class="textCenter scroller" > -->
 <div *ngIf="selectedContact != null" id="contentDiv" class="textCenter scroller" >
 
-  <cdk-virtual-scroll-viewport class="detail-viewport" itemSize="60">
+  <cdk-virtual-scroll-viewport class="detail-viewport margin-20" itemSize="60">
 
-  <div class="margin-20">
+  <!-- <div class="margin-20"> -->
 
       <div class="avatarLarge relative block floatNone floatCenter icon  bg-azul-6 marginUpDown-30">
           <img src="assets/images/person_white_72.png">
@@ -99,9 +99,9 @@
           </div>
       </div>
 
-    </div>
+  <!-- </div> -->
 
-    </cdk-virtual-scroll-viewport>
+  </cdk-virtual-scroll-viewport>
 
     <div class="btn-toolbar text-center well"></div>
 
