@@ -1,5 +1,5 @@
 import { ApiService } from './../../../services/api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 // import { Contacto } from 'src/app/models/contacto';
 import { ContactoService } from 'src/app/services/contacto.service';
