@@ -1,14 +1,10 @@
 import { Area } from './area';
 import { Telefono } from './telefono';
+import { Agente } from './agente';
 export class Contacto {
 
-  cuil: number = 0;
-  nombre: string = "";
-  funcion: string = "";
-  cod_sexo: string = "";
-  area: Area = new Area;
-  email: string = "";
-  Telefonos: Telefono[] = [];
+  titular: Agente = new Agente();
+  agente: Agente = new Agente();
 
   constructor() {}
 

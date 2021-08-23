@@ -1,3 +1,4 @@
+import { Agente } from './../../../models/agente';
 import { ApiService } from './../../../services/api.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -40,10 +41,12 @@ export class ContactDataComponent extends ContactoService implements OnInit {
 
     this.suscription = this.mainComponent.getContacto$().subscribe(data => {
 
-      this.selectedContact = data;
+      this.selectedContact = data.agente;
+      this.selectedContactBoss = data.titular;
 
-      console.log('--- selectedContact en Contact-Data ---');
-      console.log(this.selectedContact);
+      console.log('data en Contact-Data: ', data);
+      console.log('selectedContact en Contact-Data: ', this.selectedContact);
+      console.log('selectedContactBoss en Contact-Data: ', this.selectedContactBoss);
 
     });
 

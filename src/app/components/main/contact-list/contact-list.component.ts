@@ -4,6 +4,7 @@ import { MainComponent } from './../main.component';
 import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { ContactoService } from 'src/app/services/contacto.service';
+import { Contacto } from 'src/app/models/contacto';
 
 @Component({
   selector: 'app-contact-list',
@@ -44,19 +45,18 @@ export class ContactListComponent extends ContactoService implements OnInit {
 
   showContactInfo (contact: any): void {
 
+    var contacto: Contacto = new Contacto();
+
+    console.log('contact en showContactInfo: ', contact);
+
     this.selectedContact = contact;
     this.selectedContactBoss = null;
 
     this.apiService.getContact(contact.cuil.toString()).subscribe( (data: any) => {
 
-        // this.selectedContact = data;
-        console.log('--- data.Titular ---');
-        console.log(data.Titular);
-        console.log('--- data.Agentes ---');
-        console.log(data.Agentes);
+      console.log('data en getContact: ', data);
 
-        if (data.Titular != undefined &&
-            data.Agentes != undefined) {
+      if (data.Titular != undefined && data.Agentes != undefined) {
 
           var bossId = data.Titular.cuil + "";
 
@@ -66,28 +66,29 @@ export class ContactListComponent extends ContactoService implements OnInit {
 
                 var id = data.Agentes[i].cuil + "";
 
-                console.log('--- id / bossId ---');
-                console.log(id, bossId);
-
                 if (id == bossId) {
+
                       this.selectedContactBoss = data.Agentes[i];
-                      // this.contactData.selectedContactBoss = data.Agentes[i];
+
+                      console.log('id == bossId ---> break!!!');
+
                       break;
                   }
               }
           }
       }
 
+      console.log('selectedContact: ', this.selectedContact);
+      console.log('selectedContactBoss: ', this.selectedContactBoss);
+
+      contacto.agente = this.selectedContact;
+      contacto.titular = this.selectedContactBoss;
+
+      // muestra los datos del contacto seleccionado
+      // this.mainComponent.show(contact);
+      this.mainComponent.show(contacto);
+
       });
-
-    console.log('--- selectedContact en showContactInfo ---');
-    console.log(this.selectedContact);
-
-    console.log('--- selectedContactBoss showContactInfo ---');
-    console.log(this.selectedContactBoss);
-
-    // muestra los datos del contacto seleccionado
-    this.mainComponent.show(contact);
 
   }
 

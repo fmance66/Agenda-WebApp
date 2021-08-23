@@ -2,7 +2,10 @@
 
 <!-- <div id="contentDiv" class="width-65 textCenter scroller" ng-hide="selectedContact == null;"> -->
 <!-- <div id="contentDiv" class="textCenter scroller" [hidden]="selectedContact == null"> -->
-<div *ngIf="(selectedContact | json) != '{}'" id="contentDiv" class="textCenter scroller" >
+<!-- <div *ngIf="(selectedContact | json) != '{}'" id="contentDiv" class="textCenter scroller" > -->
+<div *ngIf="selectedContact != null" id="contentDiv" class="textCenter scroller" >
+
+  <cdk-virtual-scroll-viewport class="detail-viewport" itemSize="60">
 
   <div class="margin-20">
 
@@ -53,7 +56,6 @@
 
     <!-- Informacion de la fejatura -->
     <!-- <div ng-hide="selectedContactBoss == null" (click)="showContactInfo(selectedContactBoss)" style="cursor: pointer"> -->
-    <!-- <div [hidden]="selectedContactBoss == null" (click)="showContactInfo(selectedContactBoss)" style="cursor: pointer"> -->
     <div *ngIf="selectedContactBoss != null" (click)="showContactInfo(selectedContactBoss)" style="cursor: pointer">
         <div class="separadorBlancoSimple"></div>
           <div class="separadorBlancoSimple"></div>
@@ -97,19 +99,22 @@
           </div>
       </div>
 
-      <div class="btn-toolbar text-center well"></div>
-
-      <!-- <a class="button azul small" title="Contactos" alt="Contactos" -->
-        <a class="button azul col-xs-2 margin" title="Contactos" alt="Contactos"
-            (click)="showRelatedContacts(selectedContact)"> <img
-                src="assets/images/ic_business_white_48dp_2x.png"> Contactos del área </a>
-
-        <!-- <a class="button naranja small" title="Descargar" alt="Descargar" -->
-        <a class="button naranja col-xs-2 margin" title="Descargar" alt="Descargar"
-            (click)="downloadVCardForContact(selectedContact)"> <img
-                src="assets/images/file_download_72.png"> Descargar</a>
-
     </div>
+
+    </cdk-virtual-scroll-viewport>
+
+    <div class="btn-toolbar text-center well"></div>
+
+    <!-- <a class="button azul small" title="Contactos" alt="Contactos" -->
+      <a class="button azul col-xs-2 margin" title="Contactos" alt="Contactos"
+          (click)="showRelatedContacts(selectedContact)"> <img
+              src="assets/images/ic_business_white_48dp_2x.png"> Contactos del área </a>
+
+      <!-- <a class="button naranja small" title="Descargar" alt="Descargar" -->
+      <a class="button naranja col-xs-2 margin" title="Descargar" alt="Descargar"
+          (click)="downloadVCardForContact(selectedContact)"> <img
+              src="assets/images/file_download_72.png"> Descargar</a>
+
 </div>
 
 <!-- </form> -->

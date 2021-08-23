@@ -1,3 +1,13 @@
+.detail-viewport {
+  height: 620px;
+  width: 100%;  /*680px;  */
+  padding: 0px;
+  margin-bottom: 20px;
+  margin-left: 0px !important;
+  /* border: 1px solid black; */
+}
+
+
 .margin{
   margin: 10px !important;
 }
@@ -7,3 +17,5 @@
 .text-center{
   text-align: center !important;
 }
+
+

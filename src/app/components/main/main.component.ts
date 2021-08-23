@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
 
   }
 
-  // obtiene los datos de una tarjeta
+  // obtiene los datos de un contacto
   getContacto$(): Observable<any> {
     return this.actualizarFormulario.asObservable();
   }
