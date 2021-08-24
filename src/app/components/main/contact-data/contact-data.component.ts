@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ContactoService } from 'src/app/services/contacto.service';
+import { ToastrService } from 'ngx-toastr';
 
 import { ContactListComponent } from '../contact-list/contact-list.component';
 import { MainComponent } from './../main.component';
+
+import { ContactoService } from 'src/app/services/contacto.service';
 
 @Component({
   selector: 'app-contact-data',
@@ -22,7 +24,8 @@ export class ContactDataComponent extends ContactoService implements OnInit {
 
   constructor(private mainComponent: MainComponent,
               private contactList: ContactListComponent,
-              private contactoService: ContactoService) {
+              private contactoService: ContactoService,
+              private toast: ToastrService) {
 
     super();
 
@@ -57,51 +60,82 @@ export class ContactDataComponent extends ContactoService implements OnInit {
   }
 
   downloadVCardForContact (contact: any) {
-      // try {
-      //     var names = contact.nombre.trim().split(',');
-      //     var card = {
-      //         tel: []
-      //     };
-      //     for (var i = 0; contact.Telefonos != undefined && i < contact.Telefonos.length; i++) {
-      //         var telDic = contact.Telefonos[i];
 
-      //         for (var property in telDic) {
-      //             if (property.startsWith('$')) continue;
-      //             if (telDic.hasOwnProperty(property)) {
-      //                 if (telDic[property] == undefined) continue;
-      //                 if (telDic[property].length <= 3) continue;
-      //                 card.tel.push({value: telDic[property], meta: {type: [property + '']}});
-      //             }
-      //         }
-      //     }
+      try {
 
-      //     card.email = [{value: contact.email.toLowerCase(), namespace: 'item1', meta: {type: ['INTERNET']}}];
-      //     card.note = [
-      //         {value: this.capitalize(contact.funcion)}
-      //     ];
-      //     card.fn = [
-      //         {value: this.capitalize(contact.nombre)}
-      //     ];
-      //     card.n = [{
-      //         value: [
-      //             this.capitalize(names[0]), this.capitalize(names[1]), '', '', ''
-      //         ]
-      //     }];
+        var names = contact.nombre.trim().split(',');
 
-      //     var content = vCard.generate(card);
-      //     var blob = new Blob([content], {type: 'text/x-vcard=UTF-8'});
+        var card = require('vcard-parser');
 
-      //     this.downloadFile(contact.nombre + '.vcf', content, 'text/x-vcard=UTF-8');
-      // } catch (ex) {
-      //     $mdToast.show(
-      //         $mdToast.simple()
-      //             .textContent('Disculpá, esta función no esta soportada en tu versión del ')
-      //             .hideDelay(4500)
-      //     );
-      // }
+        // var card: vCard = new(vCard);
+
+        // var card: vCard = {
+        //     tel: []
+        // };
+
+        var tel: any = [];
+
+        // card = { tel: [] };
+
+        console.log('contact: ', contact);
+
+        for (var i = 0; contact.Telefonos != undefined && i < contact.Telefonos.length; i++) {
+
+            var telDic = contact.Telefonos[i];
+
+            console.log('telDic: ', telDic);
+
+            for (var property in telDic) {
+
+              if (property.startsWith('$')) continue;
+
+              if (telDic.hasOwnProperty(property)) {
+
+                  if (telDic[property] == undefined) continue;
+
+                  if (telDic[property].length <= 3) continue;
+
+                  console.log('telDic[property]: ', telDic[property], ', property: ', property + '');
+
+                  // card.tel.push({value: telDic[property], meta: {type: [property + '']}});
+                  tel.push({value: telDic[property], meta: {type: [property + '']}});
+                }
+            }
+        }
+
+        card.tel = tel;
+        // card.email = [{value: contact.email.toLowerCase(), namespace: 'item1', meta: {type: ['INTERNET']}}];
+        card.email = [{value: contact.email.toLowerCase(), meta: {type: ['INTERNET']}}];
+        card.note = [{value: this.contactoService.capitalize(contact.funcion)}];
+        card.fn = [{value: this.contactoService.capitalize(contact.nombre)}];
+        card.n = [{value: [this.contactoService.capitalize(names[0]),
+                           this.contactoService.capitalize(names[1])]}];
+                          //  this.contactoService.capitalize(names[1]), '', '', '']}];
+
+        console.log('card:', card);
+
+        var content = card.generate(card);
+
+        var blob = new Blob([content], {type: 'text/x-vcard=UTF-8'});
+
+          this.downloadFile(contact.nombre + '.vcf', content, 'text/x-vcard=UTF-8');
+
+      } catch (ex) {
+          console.log(ex);
+          this.toast.error('Create .vcf file error',
+                  'Esta función no esta soportada en tu versión del sistema...',
+                  {
+                    timeOut: 4500,
+                  }
+          );
+      }
   };
 
+  //
+  // abre cliente de correo predeterminado para mandar mail
+  //
   sendEmailToContact (contact: any) {
+      // console.log('sendEmailToContact ---> ',contact);
       window.open("mailto:" + contact.email.toLowerCase(), "_self");
   };
 

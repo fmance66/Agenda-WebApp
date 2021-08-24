@@ -17,6 +17,10 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
+// toastr, mensajes tipo emergentes
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +36,9 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     HttpClientModule,
     FormsModule,
     MatCardModule,
-    ScrollingModule
+    ScrollingModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [ApiService,
               ContactListComponent],

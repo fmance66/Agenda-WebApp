@@ -1,12 +1,11 @@
 .detail-viewport {
-  height: 600px;
+  height: 400px;  /*600px;*/
   width: 100%;
   padding: 0px;
   margin-bottom: 20px;
   margin-left: 0px !important;
   /* border: 1px solid black; */
 }
-
 
 .margin{
   margin: 10px !important;

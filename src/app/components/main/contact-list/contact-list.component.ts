@@ -59,10 +59,10 @@ export class ContactListComponent extends ContactoService implements OnInit {
 //
 showContacts (searchText: string): void {
     this.apiService.getContacts(searchText).subscribe( (data: any) => {
-    this.remoteContacts = data.Agentes});
+        this.remoteContacts = data.Agentes
+    });
 
-    // this.remoteContacts = this.contactos;
-    }
+}
 
   //
   // muestra la informacion del agente y de su boss
@@ -131,19 +131,16 @@ showRelatedContacts (contact: any) {
 
   if (contact.cuil.toString() == '') return;
 
-  this.apiService.getContact(contact.cuil + '').subscribe( (data: any) => {
+    this.apiService.getContact(contact.cuil + '').subscribe( (data: any) => {
 
-    this.remoteContacts = data.Agentes;
+      this.remoteContacts = data.Agentes;
 
-    console.log('this.remoteContacts: ', this.remoteContacts);
+      // console.log('this.remoteContacts: ', this.remoteContacts);
 
-    this.mainComponent.showRelacionados(this.remoteContacts);
+      this.mainComponent.showRelacionados(this.remoteContacts);
 
+    });
 
-  });
-
-};
-
-// trackByContact: (index: number, contact: Contacto): number => contact.cuil;
+  };
 
 }
