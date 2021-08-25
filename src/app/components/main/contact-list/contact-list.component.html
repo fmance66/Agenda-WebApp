@@ -17,7 +17,7 @@
       <cdk-virtual-scroll-viewport class="list-viewport" itemSize="60">
 
       <dl class="lista-dl">
-        <ng-container *cdkVirtualFor="let contact of remoteContacts; let i = index;">
+        <ng-container *cdkVirtualFor="let contact of remoteContacts | async; let i = index;">
 
             <div (click)="showContactInfo(contact)" style="cursor: pointer">
 

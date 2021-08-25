@@ -14,10 +14,11 @@ https://stackblitz.com/angular/bxvnjpleneo?file=app%2Ftable-http-example.html   
 mat-icon   iconos
   
 
-Consumir API
+Consumir API                                                      
 ------------
+https://codecraft.tv/courses/angular/http/http-with-promises/   (muy bueno)
 https://docs.angular.lat/tutorial/toh-pt6
-https://soka.gitlab.io/angular/conceptos/http/consumir-servicios-api-rest/consumir-servicios-api-rest/
+https://soka.gitlab.io/angular/conceptos/http/consumir-servicios-pi-rest/consumir-servicios-api-rest/
 https://codingpotions.com/angular-servicios-llamadas-http
 
 Search text

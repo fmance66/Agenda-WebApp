@@ -4,8 +4,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-import { Request, Response}  from 'express';
-
+import { Request, Response, Express}  from 'express';
+// import { Morgan } from 'morgan';
 
 if (environment.production) {
   enableProdMode();
@@ -14,16 +14,24 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
+
+/************************************************************************************
+*************************************************************************************
+************************************************************************************/
+
+//  var request = require('request');
+//  var express = require('express');
+
+//  var morgan = require('morgan');
 /*
 
- var request = require('request');
- var express = require('express');
- var morgan = require('morgan');
  var fs = require('fs');
  var path = require('path');
  var http = require('http');
  var uri = require('url');
+
  var app = express();
+
  var requestIp = require('request-ip');
  var proxy = require('express-http-proxy');
 
@@ -38,6 +46,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
  var DEINCO_SERVICE = "/secure/deinco/agenda";
  var IP_ENDPOINT = "/consulta.asp?i=";
  var CUIL_ENDPOINT = "/consulta.asp?c=";
+
 
 
  // Setup
@@ -121,6 +130,4 @@ platformBrowserDynamic().bootstrapModule(AppModule)
  app.listen(port, function () {
      console.log('Agenda - WebApp running on port ' + port);
  });
-
-
 */

@@ -63,62 +63,45 @@ export class ContactDataComponent extends ContactoService implements OnInit {
 
       try {
 
-        var names = contact.nombre.trim().split(',');
-
         var card = require('vcard-parser');
 
-        // var card: vCard = new(vCard);
+        card.fn = [{value: this.contactoService.capitalize(contact.nombre)}];
 
-        // var card: vCard = {
-        //     tel: []
-        // };
+        var names = contact.nombre.trim().split(',');
+        card.n = [{value: [this.contactoService.capitalize(names[0]),
+                           this.contactoService.capitalize(names[1]), '', '', '']}];
 
+        card.email = [{value: contact.email.toLowerCase(), namespace: 'AFIP', meta: {type: ['INTERNET']}}];
+        card.note = [{value: this.contactoService.capitalize(contact.funcion)}];
+
+        // Telefonos
         var tel: any = [];
-
-        // card = { tel: [] };
-
-        console.log('contact: ', contact);
 
         for (var i = 0; contact.Telefonos != undefined && i < contact.Telefonos.length; i++) {
 
             var telDic = contact.Telefonos[i];
-
-            console.log('telDic: ', telDic);
 
             for (var property in telDic) {
 
               if (property.startsWith('$')) continue;
 
               if (telDic.hasOwnProperty(property)) {
-
                   if (telDic[property] == undefined) continue;
-
                   if (telDic[property].length <= 3) continue;
-
-                  console.log('telDic[property]: ', telDic[property], ', property: ', property + '');
-
-                  // card.tel.push({value: telDic[property], meta: {type: [property + '']}});
                   tel.push({value: telDic[property], meta: {type: [property + '']}});
                 }
             }
         }
 
+        // asigna array de telefonos
         card.tel = tel;
-        // card.email = [{value: contact.email.toLowerCase(), namespace: 'item1', meta: {type: ['INTERNET']}}];
-        card.email = [{value: contact.email.toLowerCase(), meta: {type: ['INTERNET']}}];
-        card.note = [{value: this.contactoService.capitalize(contact.funcion)}];
-        card.fn = [{value: this.contactoService.capitalize(contact.nombre)}];
-        card.n = [{value: [this.contactoService.capitalize(names[0]),
-                           this.contactoService.capitalize(names[1])]}];
-                          //  this.contactoService.capitalize(names[1]), '', '', '']}];
 
         console.log('card:', card);
 
         var content = card.generate(card);
 
         var blob = new Blob([content], {type: 'text/x-vcard=UTF-8'});
-
-          this.downloadFile(contact.nombre + '.vcf', content, 'text/x-vcard=UTF-8');
+        this.downloadFile(contact.nombre + '.vcf', content, 'text/x-vcard=UTF-8');
 
       } catch (ex) {
           console.log(ex);
