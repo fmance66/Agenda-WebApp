@@ -1,3 +1,4 @@
+import { debounce} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -6,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
+
 export class MainComponent implements OnInit {
 
   private actualizarFormList = new BehaviorSubject<any>({} as any);    //

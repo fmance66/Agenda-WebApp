@@ -5,6 +5,7 @@ import { Contacto } from 'src/app/models/contacto';
 import { Subscription } from 'rxjs';
 
 import { MainComponent } from './../main.component';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contact-list',
@@ -16,16 +17,17 @@ export class ContactListComponent extends ContactoService implements OnInit {
 
   suscription: Subscription = new Subscription();
 
-  // contactos: any;    // array de contactos
+  // my contacts son los contactos del usuario (busqueda vacía) como un "home"
   myContacts: any = [];
+  // contactos de la lista
   remoteContacts: any = [];
+  // contactos favoritos (no implementado)
   favs: any = [];
 
   selectedContact: any = null;
   selectedContactBoss: any = null;
 
   searchText: string = "";
-
 
   constructor(private apiService: ApiService,
               private mainComponent: MainComponent) {
@@ -40,29 +42,56 @@ export class ContactListComponent extends ContactoService implements OnInit {
     this.showRelatedContacts(this.myContacts);
     this.myContacts = this.remoteContacts;
 
-    this.suscription = this.mainComponent.getRelacionados$().subscribe(data => {
+    this.suscription = this.mainComponent.getRelacionados$()
+        .subscribe(data => {
 
-      this.remoteContacts = data;
-      this.myContacts = this.remoteContacts;
+          this.remoteContacts = data;
+          this.myContacts = this.remoteContacts;
 
-    });
+        });
 
   }
 
   ngOnDestroy(): void {
     this.suscription.unsubscribe;
   }
-
+/*
 
 //
 // busca los contactos en la api segun el searchText
 //
 showContacts (searchText: string): void {
-    this.apiService.getContacts(searchText).subscribe( (data: any) => {
-        this.remoteContacts = data.Agentes
-    });
+    this.apiService.getContacts(searchText)
+
+        .subscribe( (data: any) => {
+            this.remoteContacts = data.Agentes
+
+            console.log('remoteContacts: ', this.remoteContacts);
+
+          });
 
 }
+
+*/
+
+//
+// busca los contactos en la api segun el searchText
+//
+showContacts (searchText: string): void {
+
+  this.apiService.getContacts(searchText)
+      .then( (data: any) => {
+          this.remoteContacts = data.Agentes;
+
+          console.log('remoteContacts: ', this.remoteContacts);
+
+      })
+      .catch( (error) => {
+          console.log("apiService.getContacts error: " + JSON.stringify(error));
+      });
+
+};
+
 
   //
   // muestra la informacion del agente y de su boss
@@ -120,8 +149,11 @@ showContacts (searchText: string): void {
     if (this.searchText.trim() == '') {
         this.remoteContacts = this.myContacts;
     } else {
-      this.showContacts(this.searchText);
+        this.showContacts(this.searchText);
     }
+
+    console.log('searchText ---> ', this.searchText);
+
 };
 
 //
@@ -144,3 +176,4 @@ showRelatedContacts (contact: any) {
   };
 
 }
+
