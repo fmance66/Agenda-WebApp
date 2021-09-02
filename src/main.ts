@@ -5,6 +5,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import { Request, Response, Express}  from 'express';
+import { IpService } from './app/services/ip.service';
 // import { Morgan } from 'morgan';
 
 if (environment.production) {
@@ -18,6 +19,18 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 /************************************************************************************
 *************************************************************************************
 ************************************************************************************/
+
+// const requestIp = require('request-ip');
+
+// // inside middleware handler
+// const ipMiddleware = function(req: any, res: any, next: () => void) {
+//   const clientIp = requestIp.getClientIp(req);
+//   console.log(clientIp);
+//   next();
+// };
+
+// on localhost you'll see 127.0.0.1 if you're using IPv4
+// or ::1, ::ffff:127.0.0.1 if you're using IPv6
 
 //  var request = require('request');
 //  var express = require('express');
