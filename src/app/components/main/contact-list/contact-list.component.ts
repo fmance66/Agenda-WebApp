@@ -80,15 +80,27 @@ showContacts (searchText: string): void {
 showContacts (searchText: string): void {
 
   this.apiService.getContacts(searchText)
-      .then( (data: any) => {
-          this.remoteContacts = data.Agentes;
+      .subscribe(
+        sText => { if (sText != '') {
+                          this.apiService.getContacts(searchText).subscribe(
+                            data => {
+                              this.remoteContacts = data.Agentes as any[];
+                              console.log('remoteContacts: ', this.remoteContacts);
+                              }
+                            )
+                        }
+                      }
+        );
 
-          console.log('remoteContacts: ', this.remoteContacts);
+      // .then( (data: any) => {
+      //     this.remoteContacts = data.Agentes;
 
-      })
-      .catch( (error) => {
-          console.log("apiService.getContacts error: " + JSON.stringify(error));
-      });
+      //     console.log('remoteContacts: ', this.remoteContacts);
+
+      // })
+      // .catch( (error) => {
+      //     console.log("apiService.getContacts error: " + JSON.stringify(error));
+      // });
 
 };
 
