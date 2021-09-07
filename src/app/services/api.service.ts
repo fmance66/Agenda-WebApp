@@ -28,16 +28,15 @@ export class ApiService {
   // devuelve los contactos que cumplen con searchText
   getContacts(searchText: string) {
 
-    // return this.http.get(this.apiSite + this.apiUrl + "consulta.asp?s=" + searchText.trim())
-    //       .toPromise();
-    // searchText = searchText.trim();
     return this.http.get(this.apiSite + this.apiUrl + "consulta.asp?s=" + searchText.trim())
-          .pipe(
-            debounceTime(450),
-            map( (data: any) => {
-                return ( data as any);
-              }
-            ));
+          .toPromise();
+    // return this.http.get(this.apiSite + this.apiUrl + "consulta.asp?s=" + searchText.trim())
+    //       .pipe(
+    //         debounceTime(450),
+    //         map( (data: any) => {
+    //             return ( data as any);
+    //           }
+    //         ));
 
    }
 

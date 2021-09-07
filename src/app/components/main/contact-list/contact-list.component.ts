@@ -42,11 +42,15 @@ export class ContactListComponent extends ContactoService implements OnInit {
     this.showRelatedContacts(this.myContacts);
     this.myContacts = this.remoteContacts;
 
+    // console.log('myContacts: ', this.myContacts);
+
     this.suscription = this.mainComponent.getRelacionados$()
         .subscribe(data => {
 
           this.remoteContacts = data;
           this.myContacts = this.remoteContacts;
+
+          console.log('myContacts: ', this.myContacts);
 
         });
 
@@ -55,25 +59,24 @@ export class ContactListComponent extends ContactoService implements OnInit {
   ngOnDestroy(): void {
     this.suscription.unsubscribe;
   }
-/*
 
 //
 // busca los contactos en la api segun el searchText
 //
 showContacts (searchText: string): void {
     this.apiService.getContacts(searchText)
+    .then( (data: any) => {
+        this.remoteContacts = data.Agentes;
 
-        .subscribe( (data: any) => {
-            this.remoteContacts = data.Agentes
+        console.log('remoteContacts: ', this.remoteContacts);
 
-            console.log('remoteContacts: ', this.remoteContacts);
-
-          });
-
+    })
+    .catch( (error) => {
+        console.log("apiService.getContacts error: " + JSON.stringify(error));
+    });
 }
 
-*/
-
+/*
 //
 // busca los contactos en la api segun el searchText
 //
@@ -103,7 +106,7 @@ showContacts (searchText: string): void {
       // });
 
 };
-
+*/
 
   //
   // muestra la informacion del agente y de su boss
