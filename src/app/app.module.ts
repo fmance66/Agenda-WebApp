@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // toastr, mensajes tipo emergentes
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,6 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     ScrollingModule,
     BrowserAnimationsModule, // required animations module

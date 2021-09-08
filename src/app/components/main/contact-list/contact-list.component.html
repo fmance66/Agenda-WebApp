@@ -1,46 +1,51 @@
-<div id="sideDiv" class="width-450 padding-10 bg-gris-2 paddingBottom-10 marginBottom-0">
-  <div class="separadorBlancoSimple"></div>
+<section>
+  <form [formGroup]="searchForm">
+    <div id="sideDiv" class="width-450 padding-10 bg-gris-2 paddingBottom-10 marginBottom-0">
+      <div class="separadorBlancoSimple"></div>
 
-  <!-- input de texto a buscar -->
-  <!-- ng-model="searchText" ng-change="inputSearchChanged()"
-  ng-model-options="{debounce: 450}" autofocus> -->
-  <input name="" type="text" class="buscarLarge" title="Buscar" placeholder=" Buscar contacto"
-  [(ngModel)]="searchText" (input)="inputSearchChanged()"
-  ng-model-options="{debounce: 450}" autofocus>
+      <!-- input de texto a buscar -->
 
-  <!-- ngControlOptions="{debounce: 450}" autofocus> -->
+      <!-- <input id="searchBox" name="" type="text" class="buscarLarge" title="Buscar" placeholder=" Buscar contacto"
+      [(ngModel)]="searchText" (input)="inputSearchChanged()"
+      ng-model-options="{debounce: 450}" autofocus> -->
+      <input formControlName="search" type="text" class="buscarLarge" title="Buscar" placeholder=" Buscar contacto"
+      (keyup)="searchText.next($event)">
 
-  <!-- lista de contactos que cumplen con el texto a buscar -->
-  <h3>Contactos</h3>
-  <!-- <ul id="listDiv" class="arrow2  fontsize-14 scroller" style="height: 85%"> -->
-  <ul id="listDiv" class="arrow2 listRight">
-      <cdk-virtual-scroll-viewport class="list-viewport" itemSize="60">
+      <!-- ngControlOptions="{debounce: 450}" autofocus> -->
 
-      <dl class="lista-dl">
-        <ng-container *cdkVirtualFor="let contact of remoteContacts; let i = index;">
+      <!-- lista de contactos que cumplen con el texto a buscar -->
+      <h3>Contactos</h3>
+      <!-- <ul id="listDiv" class="arrow2  fontsize-14 scroller" style="height: 85%"> -->
+      <ul id="listDiv" class="arrow2 listRight">
+          <cdk-virtual-scroll-viewport class="list-viewport" itemSize="60">
 
-            <div (click)="showContactInfo(contact)" style="cursor: pointer">
+          <dl class="lista-dl">
+            <ng-container *cdkVirtualFor="let contact of remoteContacts; let i = index;">
 
-            <li>
-              <img src="assets/images/person_72.png" class="icon16 margin-5"
-              [hidden]="remoteContacts.isInFav">
-              <strong>{{lastName(contact)}}</strong>,{{firstName(contact)}}
-              <div class="marginLeft-25 italic" >
-                  {{funcion(contact)}}
-                  <br>
-                  {{formatArea(contact)}}
+                <div (click)="showContactInfo(contact)" style="cursor: pointer">
+
+                <li>
+                  <img src="assets/images/person_72.png" class="icon16 margin-5"
+                  [hidden]="remoteContacts.isInFav">
+                  <strong>{{lastName(contact)}}</strong>,{{firstName(contact)}}
+                  <div class="marginLeft-25 italic" >
+                      {{funcion(contact)}}
+                      <br>
+                      {{formatArea(contact)}}
+                  </div>
+
+                </li>
+
               </div>
 
-            </li>
+            </ng-container>
+          </dl>
 
-          </div>
+          <!-- </div> -->
 
-        </ng-container>
-      </dl>
+        </cdk-virtual-scroll-viewport>
+      </ul>
 
-      <!-- </div> -->
-
-    </cdk-virtual-scroll-viewport>
-  </ul>
-
-</div>
+    </div>
+  </form>
+</section>
