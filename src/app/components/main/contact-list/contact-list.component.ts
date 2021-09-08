@@ -48,29 +48,19 @@ export class ContactListComponent extends ContactoService implements OnInit {
   ngOnInit(): void {
 
     // se inicializa con los contactos relacionados del cuil local
-    this.myContacts.cuil = "20182865762";
-    this.showRelatedContacts(this.myContacts);
-    this.myContacts = this.remoteContacts;
+    this.showFavorites();
 
+    // observable de contactos relacionados
     this.suscription = this.mainComponent.getRelacionados$()
         .subscribe(data => {
 
           this.remoteContacts = data;
           this.myContacts = this.remoteContacts;
 
-          // console.log('myContacts: ', this.myContacts);
-
         });
 
-    // const searchBox: any = document.getElementById('searchBox');
 
-    // const keyup$ = fromEvent(searchBox, 'keyup');
-
-    // keyup$.pipe(
-    //   map((e: any) => e.currentTarget.value),
-    //   debounceTime(450)
-    // ).subscribe(console.log);
-
+    // muestra los contactos segun search text
     this.showContacts();
 
   }
@@ -82,7 +72,6 @@ export class ContactListComponent extends ContactoService implements OnInit {
 //
 // busca los contactos en la api segun el searchText
 //
-// showContacts (searchText: string): void {
 showContacts (): void {
 
     this.searchText.pipe(
@@ -94,6 +83,7 @@ showContacts (): void {
       distinctUntilChanged(),
       switchMap(term => {
         // this.loading = true;
+        console.log(term);
         return this.apiService.getContactsByNombre(term);
       }),
       catchError((e) => {
@@ -105,9 +95,8 @@ showContacts (): void {
     ).subscribe(v => {
       // this.loading = true;
       // this.remoteContacts = v;
-      console.log('showContacts: ', v.Agentes);
+      // console.log('showContacts: ', v.Agentes);
       this.remoteContacts = v.Agentes;
-      // this.remoteContacts = v;
     })
   }
 
@@ -155,15 +144,15 @@ showContacts (): void {
   }
 
 //
-// muestra los contactos relacionados con el agente
+// muestra los contactos relacionados del cuil
 //
-showRelatedContacts (contact: any) {
+showRelatedContacts (cuil: any) {
 
-  console.log('showRelatedContacts: ', contact);
+  console.log('showRelatedContacts: ', cuil);
 
-  if (contact.cuil.toString() == '') return;
+  if (cuil.toString() === '') return;
 
-    this.apiService.getContactByCuil(contact.cuil + '').subscribe( (data: any) => {
+    this.apiService.getContactByCuil(cuil + '').subscribe( (data: any) => {
 
       this.remoteContacts = data.Agentes;
 
@@ -172,6 +161,19 @@ showRelatedContacts (contact: any) {
       this.mainComponent.showRelacionados(this.remoteContacts);
 
     });
+
+  };
+
+//
+// muestra los contactos favoritos
+//
+showFavorites () {
+
+  this.apiService.getFavorites()
+      .subscribe((data: any) => {
+        // console.log('showFavorites: ', data.Agentes);
+        this.remoteContacts = data.Agentes;
+      })
 
   };
 

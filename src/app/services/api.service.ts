@@ -24,21 +24,17 @@ export class ApiService {
     searchText = searchText.trim();
 
     if (searchText === "" ) {
-      console.log("Api service: el parámetro de búsqueda está vacío");
-      return this.httpClient.get(this.apiSite + this.apiUrl + "consulta.asp?c=" + "20182865762")
-      .pipe(map(response => {
-        // console.log('api.service: ', response);
-        // return this.results = response["Agentes"]
-        return this.results = response;
-      }))
+      // si el parametro está vacío devuelve los contactos del usuario
+      return this.getFavorites()
+           .pipe(map(response => {
+              return this.results = response;
+          }))
 } else {
       // let params = {q: searchText}
       return this.httpClient.get(this.apiSite + this.apiUrl + "consulta.asp?s=" + searchText)
                 .pipe(map(response => {
-                    // console.log('api.service: ', response);
-                    // return this.results = response["Agentes"]
                     return this.results = response;
-                  }))
+                }))
     }
   }
 
@@ -50,6 +46,11 @@ export class ApiService {
   // devuelve el contacto del cuil
   getContactByCuil(cuil: string) {
     return this.httpClient.get(this.apiSite + this.apiUrl + "consulta.asp?c=" + cuil);
+   }
+
+  // devuelve los contactos del local user
+  getFavorites() {
+    return this.getContactByCuil("20182865762");
    }
 
 
